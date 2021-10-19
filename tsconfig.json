@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "types": ["jest"],
+    "declaration": true,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "noLib": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es6",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "lib": ["es6"],
+    "skipLibCheck": true,
+    "typeRoots": ["./typings"]
+  },
+  "exclude": ["node_modules", "**/*.spec.ts", "**/__mocks__"]
+}

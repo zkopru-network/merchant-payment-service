@@ -1,0 +1,22 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "typeRoots": ["node_modules/@types"],
+    "types": ["jest", "node"],
+    "target": "es2017",
+    "outDir": "./lib",
+    "rootDir": "./src",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "lib": [
+      "dom"
+    ]
+  },
+  "include": ["src", "tests"]
+}

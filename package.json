@@ -1,0 +1,37 @@
+{
+  "name": "merchant-payment-service",
+  "version": "1.0.0",
+  "description": "merchant service for zkopru",
+  "main": "index.js",
+  "bin": {
+    "payment-service": ""
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zkopru-network/merchant-payment-service.git"
+  },
+  "keywords": [
+    "layer2"
+  ],
+  "author": "OH YoungTaek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zkopru-network/merchant-payment-service/issues"
+  },
+  "homepage": "https://github.com/zkopru-network/merchant-payment-service#readme",
+  "dependencies": {
+    "@oclif/command": "^1.8.0",
+    "@oclif/config": "^1.17.0",
+    "@oclif/plugin-help": "^3.2.3",
+    "@types/jest": "^27.0.2",
+    "jest": "^27.3.1",
+    "ts-jest": "^27.0.7",
+    "ts-node": "^10.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.6"
+  }
+}
