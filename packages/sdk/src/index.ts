@@ -1,3 +1,3 @@
-export {Merchant} from "./merchant";
-export {Customer} from "./customer";
 export {OptionMerchantSdk} from "./option";
+export {Store} from "./store";
+export {Stock, Purchase} from "./entities";

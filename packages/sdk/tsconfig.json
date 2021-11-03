@@ -18,5 +18,5 @@
       "dom"
     ]
   },
-  "include": ["src", "tests"]
+  "include": ["src"]
 }

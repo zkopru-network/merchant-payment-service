@@ -1,0 +1,3 @@
+[submodule "packages/sdk/zkopru"]
+	path = packages/sdk/zkopru
+	url = https://github.com/zkopru-network/zkopru

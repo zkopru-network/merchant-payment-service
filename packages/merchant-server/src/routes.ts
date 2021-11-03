@@ -5,6 +5,5 @@ export const routes: Routes = [
     {
         path: "/v1",
         module: ApiV1Module
-
     },
 ] as Routes;

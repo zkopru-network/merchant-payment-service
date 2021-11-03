@@ -1,13 +1,16 @@
 {
-  "name": "merchant-payment-service-cli",
+  "name": "@merchant-payment-service/cli",
   "version": "1.0.0",
   "description": "merchant service for zkopru",
   "bin": {
     "payment-service": "./bin/run"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf ./lib && tsc",
+    "preBootstrap": "rm -rf ./node_modules"
   },
+  "files": ["lib", "bin"],
   "main": "lib/index.js",
   "oclif": {
     "commands": "./lib/commands",
@@ -37,5 +40,6 @@
   },
   "devDependencies": {
     "typescript": "^4.4.4"
-  }
+  },
+  "private": true
 }
