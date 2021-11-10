@@ -14,3 +14,7 @@ yarn bootstrap
 ### how to run
 - go to /packages/cli
 - run ``` ./bin/run start -p {port} -c {coordinator url} -u {db url} -t {db type}```
+
+### conceptual mindmap
+
+<iframe width="768" height="432" src="https://miro.com/app/live-embed/o9J_llQf_1M=/?moveToViewport=-371,-364,1433,876" frameBorder="0" scrolling="no" allowFullScreen></iframe>
