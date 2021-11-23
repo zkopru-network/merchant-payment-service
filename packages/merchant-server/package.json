@@ -8,6 +8,16 @@
     "preBootstrap": "rm -rf ./node_modules"
   },
   "dependencies": {
+    "@zkopru/account": "file:./zkopru/packages/account",
+    "@zkopru/babyjubjub": "file:./zkopru/packages/babyjubjub",
+    "@zkopru/contracts": "file:./zkopru/packages/contracts",
+    "@zkopru/coordinator": "file:./zkopru/packages/coordinator",
+    "@zkopru/core": "file:./zkopru/packages/core",
+    "@zkopru/database": "file:./zkopru/packages/database",
+    "@zkopru/integration-test": "file:./zkopru/packages/integration-test",
+    "@zkopru/transaction": "file:./zkopru/packages/transaction",
+    "@zkopru/utils": "file:./zkopru/packages/utils",
+    "@zkopru/zk-wizard": "file:./zkopru/packages/zk-wizard",
     "@nestjs/cli": "^8.1.4",
     "@nestjs/common": "^8.2.0",
     "@nestjs/config": "^1.1.0",

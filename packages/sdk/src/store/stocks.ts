@@ -36,4 +36,8 @@ export class Stocks {
     async getAll(searchOptions: StockSearchOptions): Promise<StockDto[]> {
         return await this.repository.getStocks(searchOptions);
     }
+
+    async get(stockId: number): Promise<StockDto> {
+        return (await this.getAll({id:stockId}))[0]
+    }
 }

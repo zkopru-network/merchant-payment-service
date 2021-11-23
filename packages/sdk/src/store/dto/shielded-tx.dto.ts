@@ -1,3 +1,4 @@
+// @ts-ignore
 import {ZkTx} from "@zkopru/transaction";
 
 export class ShieldedTxDto {

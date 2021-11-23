@@ -3,7 +3,7 @@ import {StoreController} from "./store/store.controller";
 import {StoreService} from "./store/store.service";
 import {ConfigModule} from "@nestjs/config";
 import configuration from "../config";
-import {storeFactory} from "./factories";
+import {storeFactory, walletFactory} from "./factories";
 
 @Module({
     imports: [ConfigModule.forRoot({
@@ -11,7 +11,7 @@ import {storeFactory} from "./factories";
         load: [configuration],
     })],
     controllers: [StoreController],
-    providers: [StoreService, storeFactory]
+    providers: [StoreService, storeFactory, walletFactory]
 })
 export class ApiV1Module {
 

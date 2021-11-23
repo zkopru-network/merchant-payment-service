@@ -1,6 +1,8 @@
 import {ConfigService} from "@nestjs/config";
 import {StoreRepository} from "@merchant-payment-service/sdk/lib/infra/database";
 import {Purchase, Stock, Store} from "@merchant-payment-service/sdk";
+import {Wallet} from "../l2/wallet";
+import {ZkopruWalletImpl} from "../infra/zkopru/wallet";
 
 export const storeFactory = {
     provide: 'STORE',
@@ -15,3 +17,12 @@ export const storeFactory = {
     },
     inject: [ConfigService]
 };
+
+export const walletFactory = {
+    provide: 'WALLET',
+    useFactory: (configService: ConfigService) => {
+        // todo: add configuration
+        return new ZkopruWalletImpl({} as any);
+    },
+    inject: [ConfigService]
+}

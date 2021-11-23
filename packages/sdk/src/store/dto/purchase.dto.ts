@@ -1,4 +1,5 @@
 export interface PurchaseDto {
+    id?: number;
     stockId: number;
     receiptHash?: string;
     clientShieldTx: string;

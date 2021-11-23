@@ -1,10 +1,10 @@
 import {Body, Controller, Get, Post, Query} from "@nestjs/common";
 import {StoreService} from "./store.service";
-import {RequestPurchaseDto} from "../../dto/request-purchase.dto";
-import {RequestPurchaseResponseDto} from "../../dto/request-purchase-response.dto";
+import {RequestPurchaseDto} from "./dto/request-purchase.dto";
+import {RequestPurchaseResponseDto} from "./dto/request-purchase-response.dto";
 import {PurchaseDto, StockDto} from "@merchant-payment-service/sdk/lib/store/dto";
-import {RegisterStockDto} from "../../dto/register-stock.dto";
-import {ConfirmPurchaseDto} from "../../dto/confirm-purchase.dto";
+import {RegisterStockDto} from "./dto/register-stock.dto";
+import {ConfirmPurchaseDto} from "./dto/confirm-purchase.dto";
 
 @Controller("/store")
 export class StoreController {
