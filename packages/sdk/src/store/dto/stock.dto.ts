@@ -8,6 +8,7 @@ export interface StockDto {
     assetType: AssetType;
     address: string;
     ownerAddress: string;
+    assetId?: string;
     price: string;
     createdAt: Date;
     atomicSwapSalt: string;

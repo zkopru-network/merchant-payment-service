@@ -1,10 +1,9 @@
 import {Body, Controller, Get, Post, Query} from "@nestjs/common";
 import {StoreService} from "./store.service";
-import {RequestPurchaseDto} from "../../dto/request-purchase.dto";
-import {RequestPurchaseResponseDto} from "../../dto/request-purchase-response.dto";
+import {RequestPurchaseDto} from "./dto/request-purchase.dto";
+import {RequestPurchaseResponseDto} from "./dto/request-purchase-response.dto";
 import {PurchaseDto, StockDto} from "@merchant-payment-service/sdk/lib/store/dto";
-import {RegisterStockDto} from "../../dto/register-stock.dto";
-import {ConfirmPurchaseDto} from "../../dto/confirm-purchase.dto";
+import {RegisterStockDto} from "./dto/register-stock.dto";
 
 @Controller("/store")
 export class StoreController {
@@ -31,21 +30,10 @@ export class StoreController {
     async requestPurchase(
         @Body() request: RequestPurchaseDto
     ): Promise<RequestPurchaseResponseDto> {
-        return await this.storeService.requestPurchases(
+        return await this.storeService.requestAndConfirmPurchases(
             request.stockId,
             request.from,
             request.encodedTx
-        );
-    }
-
-    @Post("/purchases/confirm")
-    async confirmPurchase(
-        @Body() request: ConfirmPurchaseDto
-    ): Promise<PurchaseDto> {
-        return await this.storeService.confirmPurchases(
-            request.stockId,
-            request.from,
-            request.encodedTx,
         );
     }
 

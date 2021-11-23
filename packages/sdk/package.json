@@ -19,7 +19,7 @@
     "@zkopru/core": "file:./zkopru/packages/core",
     "@zkopru/database": "file:./zkopru/packages/database",
     "@zkopru/integration-test": "file:./zkopru/packages/integration-test",
-    "@zkopru/transaction": "file:./zkopru/packages/transaction",
+    "@zkopru/transaction": "2.0.0-beta.5",
     "@zkopru/utils": "file:./zkopru/packages/utils",
     "@zkopru/zk-wizard": "file:./zkopru/packages/zk-wizard",
     "axios": "^0.24.0",

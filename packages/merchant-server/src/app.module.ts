@@ -1,8 +1,8 @@
-import {Logger, MiddlewareConsumer, Module, OnApplicationBootstrap} from "@nestjs/common";
+import {MiddlewareConsumer, Module, OnApplicationBootstrap} from "@nestjs/common";
 import {RouterModule} from "nest-router";
 import {routes} from "./routes";
 import {LoggerMiddleware} from "./middleware/logger.middleware";
-import {ApiV1Module} from "./v1/ApiV1Module";
+import {ApiV1Module} from "./v1/api-v1.module";
 
 @Module({
     imports: [
