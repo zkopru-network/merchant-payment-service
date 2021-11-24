@@ -1,5 +1,4 @@
 import {Body, Controller, Delete, Get, Post, Query} from "@nestjs/common";
-import {StoreService} from "../store/store.service";
 import {WalletService} from "./wallet.service";
 import {DepositEthDto} from "./dto/deposit-eth.dto";
 import {DepositErc20Dto} from "./dto/deposit-erc20.dto";
@@ -7,7 +6,7 @@ import {DepositNftDto} from "./dto/deposit-nft.dto";
 import {WithdrawErc20Dto} from "./dto/withdraw-erc20.dto";
 import {WithdrawEthDto} from "./dto/withdraw-eth.dto";
 import {WithdrawNftDto} from "./dto/withdraw-nft.dto";
-import {ApiTags} from "@nestjs/swagger";
+import {ApiOperation, ApiTags} from "@nestjs/swagger";
 
 @Controller("/wallet")
 @ApiTags("wallet")
@@ -19,6 +18,9 @@ export class WalletController {
     }
 
     @Post("/eth")
+    @ApiOperation({
+        description: "deposit ether"
+    })
     async depositETH(
         @Body() request: DepositEthDto
     ) {
@@ -31,11 +33,13 @@ export class WalletController {
     }
 
     @Post("/erc20")
+    @ApiOperation({
+        description: "deposit ERC20"
+    })
     async depositERC20(
         @Body() request: DepositErc20Dto
     ) {
         return this.walletService.depositERC20(
-            request.eth,
             request.addr,
             request.amount,
             request.fee,
@@ -44,11 +48,13 @@ export class WalletController {
     }
 
     @Post("/nft")
+    @ApiOperation({
+        description: "deposit NFT(ERC721)"
+    })
     async depositNFT(
         @Body() request: DepositNftDto
     ) {
         return this.walletService.depositNFT(
-            request.eth,
             request.addr,
             request.nft,
             request.fee,
@@ -57,6 +63,9 @@ export class WalletController {
     }
 
     @Delete("/eth")
+    @ApiOperation({
+        description: "Withdraw ETH"
+    })
     async withdrawETH(
         @Body() request: WithdrawEthDto
     ) {
@@ -69,6 +78,9 @@ export class WalletController {
     }
 
     @Delete("/erc20")
+    @ApiOperation({
+        description: "Withdraw ERC20"
+    })
     async withdrawERC20(
         @Body() request: WithdrawErc20Dto
     ) {
@@ -82,11 +94,13 @@ export class WalletController {
     }
 
     @Delete("/nft")
+    @ApiOperation({
+        description: "Withdraw NFT"
+    })
     async withdrawNFT(
         @Body() request: WithdrawNftDto
     ) {
         return this.walletService.withdrawNFT(
-            request.eth,
             request.addr,
             request.nft,
             request.fee,
@@ -95,6 +109,9 @@ export class WalletController {
     }
 
     @Get("/balances")
+    @ApiOperation({
+        description: "get Balances"
+    })
     async getBalances() {
         return this.walletService.getBalances();
     }

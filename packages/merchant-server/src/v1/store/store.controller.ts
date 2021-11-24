@@ -4,6 +4,7 @@ import {RequestPurchaseDto} from "./dto/request-purchase.dto";
 import {RequestPurchaseResponseDto} from "./dto/request-purchase-response.dto";
 import {PurchaseDto, StockDto} from "@merchant-payment-service/sdk/lib/store/dto";
 import {RegisterStockDto} from "./dto/register-stock.dto";
+import {ApiOperation} from "@nestjs/swagger";
 
 @Controller("/store")
 export class StoreController {
@@ -14,12 +15,18 @@ export class StoreController {
     }
 
     @Get("/purchases")
+    @ApiOperation({
+        description: "get purchases"
+    })
     async getAllPurchases() {
         // todo: more query
         return await this.storeService.getPurchases({});
     }
 
     @Get("/purchases/:purchaseId")
+    @ApiOperation({
+        description: "get specific purchases"
+    })
     async getPurchase(
         @Query() purchaseId: string
     ) {
@@ -27,6 +34,9 @@ export class StoreController {
     }
 
     @Post("/purchases/request")
+    @ApiOperation({
+        description: "request purchase"
+    })
     async requestPurchase(
         @Body() request: RequestPurchaseDto
     ): Promise<RequestPurchaseResponseDto> {
@@ -38,12 +48,18 @@ export class StoreController {
     }
 
     @Get("/stocks")
+    @ApiOperation({
+        description: "get all stocks"
+    })
     async getAllStocks(): Promise<StockDto[]> {
         // todo: more query
         return await this.storeService.getStocks({});
     }
 
     @Get("/stocks/:stockId")
+    @ApiOperation({
+        description: "get specific stock"
+    })
     async getStock(
         @Query() stockId: string
     ): Promise<StockDto> {
@@ -52,6 +68,9 @@ export class StoreController {
     }
 
     @Post("/stocks")
+    @ApiOperation({
+        description: "register a stock"
+    })
     async registerStock(
         @Body() request: RegisterStockDto
     ) {
