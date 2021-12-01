@@ -3,6 +3,8 @@ import {NestExpressApplication} from "@nestjs/platform-express";
 import express from "express";
 import {AppModule} from "./app.module";
 import {SwaggerModule, DocumentBuilder} from '@nestjs/swagger';
+import fs from "fs";
+import * as yaml from "js-yaml";
 
 export async function createApp(): Promise<NestExpressApplication> {
     const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -18,6 +20,7 @@ export async function createApp(): Promise<NestExpressApplication> {
         .build();
 
     const document = SwaggerModule.createDocument(app, config);
+    fs.writeFileSync(`swagger.yaml`, yaml.dump(document));
     SwaggerModule.setup('api', app, document);
     return app;
 }

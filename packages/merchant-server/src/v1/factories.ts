@@ -5,6 +5,8 @@ import {ZkopruWalletImpl} from "../infra/zkopru/wallet";
 import Web3 from "web3";
 import {SQLiteConnector} from "@zkopru/database/src/connectors/sqlite";
 import {schema} from "@zkopru/database/src";
+import {AdminRepository} from "@merchant-payment-service/sdk/lib/infra/database/admin-repository";
+import {Admins} from "@merchant-payment-service/sdk/lib/user";
 export const storeFactory = {
     provide: 'STORE',
     useFactory: (configService: ConfigService) => {
@@ -18,6 +20,22 @@ export const storeFactory = {
     },
     inject: [ConfigService]
 };
+
+export const adminFactory = {
+    provide: 'ADMIN',
+    useFactory: (configService: ConfigService) => {
+        const repository = new AdminRepository(
+            {
+                type: configService.get<"sqlite" | "mysql" | "postgres">("database.type"),
+                database: configService.get<string>("database.url"),
+                entities: [Stock, Purchase],
+                synchronize: true
+            }
+        )
+        return new Admins(repository);
+    },
+    inject: [ConfigService]
+}
 
 export const walletFactory = {
     provide: 'WALLET',
