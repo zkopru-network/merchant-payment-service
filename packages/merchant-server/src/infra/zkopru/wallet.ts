@@ -1,13 +1,11 @@
 import {Wallet} from "../../l2/wallet";
 import {Account, IpcProvider, WebsocketProvider} from 'web3-core'
-import {StockDto} from "@merchant-payment-service/sdk/lib/store/dto";
+import {StockDto} from "../../core/store/dto";
 import {Address} from "soltypes";
-import {AssetType} from "@merchant-payment-service/sdk/lib/store/dto/stock.dto";
+import {AssetType} from "../../core/store/dto/stock.dto";
 import {ZkWalletAccount, ZkWalletAccountConfig} from "@zkopru/zk-wizard";
 import {DB} from "@zkopru/database";
-// @ts-ignore
 import {ZkAccount} from "@zkopru/account"
-// @ts-ignore
 import {FullNode, ZkopruNode} from "@zkopru/core"
 import {ZkAddress, TxBuilder} from "@zkopru/transaction";
 import {ZkTx} from "@zkopru/transaction";

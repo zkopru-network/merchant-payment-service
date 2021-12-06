@@ -1,7 +1,7 @@
 import path from "path";
-import {Stocks} from "../../src/store/stocks";
-import {StoreRepository} from "../../src/infra/database";
-import {testStock1, testStock2} from "./golden";
+import {Stocks} from "../../src/core/store/stocks";
+import {StoreRepository} from "../../src/core/infra/database";
+import {testStock1, testStock2} from "./golden/index";
 
 describe('Stocks', () => {
     let stocks: Stocks;
@@ -45,7 +45,7 @@ describe('Stocks', () => {
         repository = new StoreRepository({
             type: "sqlite",
             database: "/tmp/dev.sqlite",
-            entities: [path.join(__dirname, "../../src/entities/*.ts")],
+            entities: [path.join(__dirname, "../../src/core/entities/*.ts")],
             synchronize: true
         })
         await repository.dropTable();

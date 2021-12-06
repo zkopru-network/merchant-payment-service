@@ -1,9 +1,9 @@
-import {Stocks} from "../../src/store/stocks";
-import {StoreRepository} from "../../src/infra/database";
+import {Stocks} from "../../src/core/store/stocks";
+import {StoreRepository} from "../../src/core/infra/database";
 import path from "path";
-import {Purchases} from "../../src/store/purchases";
-import {testStock1} from "./golden";
-import {ShieldedTxDto} from "../../src/store/dto";
+import {Purchases} from "../../src/core/store/purchases";
+import {testStock1} from "./golden/index";
+import {ShieldedTxDto} from "../../src/core/store/dto";
 import {zktx_1} from "./golden/zktx.golden";
 
 const mockServer = require("mockttp").getLocal();
@@ -60,7 +60,7 @@ describe('Purchases', () => {
         repository = new StoreRepository({
             type: "sqlite",
             database: "/tmp/dev.sqlite",
-            entities: [path.join(__dirname, "../../src/entities/*.ts")],
+            entities: [path.join(__dirname, "../../src/core/entities/*.ts")],
             synchronize: true
         })
         await repository.dropTable();

@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const path_1 = __importDefault(require("path"));
-const stocks_1 = require("../../src/store/stocks");
-const database_1 = require("../../src/infra/database");
-const golden_1 = require("./golden");
+const stocks_1 = require("@merchant-payment-service/sdk/src/store/stocks");
+const database_1 = require("@merchant-payment-service/sdk/src/infra/database");
+const golden_1 = require("./golden/index");
 describe('Stocks', () => {
     let stocks;
     let repository;

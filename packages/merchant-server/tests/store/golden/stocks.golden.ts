@@ -1,5 +1,5 @@
-import {StockDto} from "../../../src/store/dto";
-import {AssetType} from "../../../src/store/dto/stock.dto";
+import {StockDto} from "../../../src/core/store/dto";
+import {AssetType} from "../../../src/core/store/dto/stock.dto";
 
 export const testStock1 = {
     id: 1,

@@ -1,6 +1,7 @@
 import {Connection, createConnection, getConnection, Repository} from "typeorm";
 import {ConnectionOptions} from "typeorm/connection/ConnectionOptions";
 import {Admin} from "../../entities/admin";
+import {Logger} from "@nestjs/common";
 
 export class AdminRepository {
     constructor(private option: ConnectionOptions) {
@@ -9,6 +10,7 @@ export class AdminRepository {
 
     public async getAdmin(email: string): Promise<Admin> {
         const repository = await this.getAdminRepository();
+        Logger.log(await repository.find())
         return await repository.findOne({where: {email}})
     }
 
@@ -20,7 +22,9 @@ export class AdminRepository {
 
     public async createAdmin(email: string, passphrase: string) {
         const repository = await this.getAdminRepository();
-        return repository.create({
+        if (await repository.count({email}) !== 0)
+            throw new Error("already exists");
+        return await repository.save({
             email,
             passphrase
         });

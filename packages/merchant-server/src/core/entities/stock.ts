@@ -6,11 +6,8 @@ export class Stock extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({
-        type: "simple-enum",
-        enum: AssetType
-    })
-    type;
+    @Column()
+    type: string;
 
     @Column()
     address: string;
@@ -18,13 +15,13 @@ export class Stock extends BaseEntity {
     @Column()
     ownerAddress: string;
 
-    @Column()
+    @Column({nullable:true})
     assetId?: string;
 
     @CreateDateColumn()
     createdAt: Date
 
-    @Column()
+    @Column({nullable:true})
     atomicSwapSalt: string;
 
     // todo: erc20, erc721 support?

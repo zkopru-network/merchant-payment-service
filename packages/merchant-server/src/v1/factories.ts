@@ -1,12 +1,14 @@
 import {ConfigService} from "@nestjs/config";
-import {StoreRepository} from "@merchant-payment-service/sdk/lib/infra/database";
-import {Purchase, Stock, Store} from "@merchant-payment-service/sdk";
+import {StoreRepository} from "../core/infra/database";
+import {Purchase, Stock, Store} from "../core";
 import {ZkopruWalletImpl} from "../infra/zkopru/wallet";
 import Web3 from "web3";
 import {SQLiteConnector} from "@zkopru/database/src/connectors/sqlite";
 import {schema} from "@zkopru/database/src";
-import {AdminRepository} from "@merchant-payment-service/sdk/lib/infra/database/admin-repository";
-import {Admins} from "@merchant-payment-service/sdk/lib/user";
+import {AdminRepository} from "../core/infra/database/admin-repository";
+import {Admins} from "../core/user";
+import {Admin} from "../core/entities/admin";
+
 export const storeFactory = {
     provide: 'STORE',
     useFactory: (configService: ConfigService) => {
@@ -28,7 +30,7 @@ export const adminFactory = {
             {
                 type: configService.get<"sqlite" | "mysql" | "postgres">("database.type"),
                 database: configService.get<string>("database.url"),
-                entities: [Stock, Purchase],
+                entities: [Stock, Purchase, Admin],
                 synchronize: true
             }
         )

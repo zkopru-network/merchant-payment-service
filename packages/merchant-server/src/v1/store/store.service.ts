@@ -1,9 +1,9 @@
 import {Inject, Injectable} from "@nestjs/common";
-import {Store} from "@merchant-payment-service/sdk";
-import {PurchaseSearchOptions} from "@merchant-payment-service/sdk/lib/store/purchases";
-import {PurchaseDto, ShieldedTxDto, StockDto} from "@merchant-payment-service/sdk/lib/store/dto";
-import {StockSearchOptions} from "@merchant-payment-service/sdk/lib/store/stocks";
-import {AssetType} from "@merchant-payment-service/sdk/lib/store/dto/stock.dto";
+import {Store} from "../../core/store";
+import {PurchaseSearchOptions} from "../../core/store/purchases";
+import {PurchaseDto, ShieldedTxDto, StockDto} from "../../core/store/dto";
+import {StockSearchOptions} from "../../core/store/stocks";
+import {AssetType} from "../../core/store/dto/stock.dto";
 import {Wallet} from "../../l2/wallet";
 import {ZkTx} from "@zkopru/transaction";
 import {ApiTags} from "@nestjs/swagger";

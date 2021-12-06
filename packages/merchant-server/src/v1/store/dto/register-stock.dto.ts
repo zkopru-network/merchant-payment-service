@@ -1,4 +1,4 @@
-import {AssetType} from "@merchant-payment-service/sdk/lib/store/dto/stock.dto";
+import {AssetType} from "../../../core/store/dto/stock.dto";
 import {ApiProperty, ApiPropertyOptional} from "@nestjs/swagger";
 
 

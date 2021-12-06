@@ -5,6 +5,7 @@ import {Purchase} from "../../entities/pruchase";
 import {Stock} from "../../entities/stock";
 import {PurchaseSearchOptions} from "../../store/purchases";
 import {StockSearchOptions} from "../../store/stocks";
+import {AssetType} from "../../store/dto/stock.dto";
 
 
 export class StoreRepository {
@@ -81,7 +82,13 @@ export class StoreRepository {
     }
 
     private stockDtoToEntity(stockDto: StockDto): Stock {
-        return (stockDto as unknown as Stock);
+        return {
+            type: AssetType[stockDto.assetType],
+            address: stockDto.address,
+            ownerAddress: stockDto.ownerAddress,
+            atomicSwapSalt: stockDto.atomicSwapSalt,
+            price: stockDto.price
+        } as Stock;
     }
 
     private pruchaseEntityToDto(purchase: Purchase): PurchaseDto {

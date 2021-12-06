@@ -3,12 +3,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const stocks_1 = require("../../src/store/stocks");
-const database_1 = require("../../src/infra/database");
+const stocks_1 = require("@merchant-payment-service/sdk/src/store/stocks");
+const database_1 = require("@merchant-payment-service/sdk/src/infra/database");
 const path_1 = __importDefault(require("path"));
-const purchases_1 = require("../../src/store/purchases");
-const golden_1 = require("./golden");
-const dto_1 = require("../../src/store/dto");
+const purchases_1 = require("@merchant-payment-service/sdk/src/store/purchases");
+const golden_1 = require("./golden/index");
+const dto_1 = require("@merchant-payment-service/sdk/src/store/dto");
 const zktx_golden_1 = require("./golden/zktx.golden");
 const mockServer = require("mockttp").getLocal();
 describe('Purchases', () => {

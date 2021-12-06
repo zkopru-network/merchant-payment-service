@@ -1,8 +1,8 @@
-
 export enum AssetType {
-    ERC20,
-    ERC721
+    ERC20 = "ERC20",
+    ERC721 = "ERC721"
 }
+
 export interface StockDto {
     id?: number;
     assetType: AssetType;

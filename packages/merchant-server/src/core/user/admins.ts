@@ -1,11 +1,12 @@
 import {AdminRepository} from "../infra/database/admin-repository";
+import {Logger} from "@nestjs/common";
 
 export class Admins {
     constructor(private adminRepository: AdminRepository) {
     }
 
     async create(email: string, passphrase: string) {
-        return await this.adminRepository.createAdmin(email, passphrase);
+        await this.adminRepository.createAdmin(email, passphrase);
     }
 
     async get(email: string, passphrase: string) {

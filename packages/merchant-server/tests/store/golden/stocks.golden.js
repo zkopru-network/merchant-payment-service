@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.testStock2 = exports.testStock1 = void 0;
-const stock_dto_1 = require("../../../src/store/dto/stock.dto");
+const stock_dto_1 = require("@merchant-payment-service/sdk/src/store/dto/stock.dto");
 exports.testStock1 = {
     id: 1,
     address: "0x0",

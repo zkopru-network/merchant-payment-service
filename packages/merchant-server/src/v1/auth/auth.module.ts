@@ -8,6 +8,7 @@ import {JwtStrategy} from "./jwt.strategy";
 
 @Module({
     imports: [UsersModule, PassportModule, JwtModule.register(
+        // todo: up secret to config file.
         {
             secret: "secret", signOptions: {expiresIn: '60s'},
         }

@@ -11,6 +11,6 @@ export class Admin extends BaseEntity {
     @Column()
     passphrase: string;
 
-    @Column()
+    @Column({nullable: true})
     role?: string;
 }

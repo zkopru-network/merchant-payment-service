@@ -1,8 +1,7 @@
 import {PurchaseDto, ShieldedTxDto} from "./dto";
 import {StoreRepository} from "../infra/database/store-repository";
-// @ts-ignore
 import {ZkTx} from "@zkopru/transaction";
-import axios, {Axios, AxiosResponse} from 'axios';
+import axios, {AxiosResponse} from 'axios';
 
 export interface PurchaseSearchOptions {
     id?: number;
@@ -13,7 +12,7 @@ export interface PurchaseSearchOptions {
 export class Purchases {
     private repository: StoreRepository;
     private coordinatorUrl: string;
-    private client: Axios;
+    private client: any;
 
     constructor(repository: StoreRepository, coordinatorUrl: string) {
         this.repository = repository;
@@ -82,7 +81,7 @@ export class Purchases {
         return await this.repository.getPurchases(searchOptions);
     }
 
-    private async sendLayer2Tx(zkTx:ZkTx|ZkTx[]): Promise<AxiosResponse> {
+    private async sendLayer2Tx(zkTx: ZkTx | ZkTx[]): Promise<AxiosResponse> {
         const txs = [zkTx].flat()
         const response = await this.client.post("/txs",
             JSON.stringify(txs.map(tx => tx.encode().toString('hex'))))

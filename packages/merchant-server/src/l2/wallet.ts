@@ -1,4 +1,4 @@
-import {StockDto} from "@merchant-payment-service/sdk/lib/store/dto";
+import {StockDto} from "../core/store/dto";
 import {F} from "@zkopru/babyjubjub";
 import {ZkTx} from "@zkopru/transaction";
 import {ZkAddress} from "@zkopru/transaction";

@@ -2,10 +2,9 @@ import {Body, Controller, Get, Post, Query, UseGuards} from "@nestjs/common";
 import {StoreService} from "./store.service";
 import {RequestPurchaseDto} from "./dto/request-purchase.dto";
 import {RequestPurchaseResponseDto} from "./dto/request-purchase-response.dto";
-import {PurchaseDto, StockDto} from "@merchant-payment-service/sdk/lib/store/dto";
+import {StockDto} from "../../core/store/dto";
 import {RegisterStockDto} from "./dto/register-stock.dto";
 import {ApiOperation, ApiTags} from "@nestjs/swagger";
-import {AuthGuard} from "@nestjs/passport";
 import {JwtAuthGuard} from "../auth/jwt-auth.guard";
 
 @Controller("/store")

@@ -4,16 +4,16 @@ import {StoreService} from "../src/v1/store/store.service";
 import request from 'supertest';
 import {INestApplication} from "@nestjs/common";
 import {MockFunctionMetadata, ModuleMocker} from 'jest-mock';
-import {PurchaseSearchOptions} from "@merchant-payment-service/sdk/lib/store/purchases";
+import {PurchaseSearchOptions} from "../src/core/store/purchases";
 
 const moduleMocker = new ModuleMocker(global);
 
 describe('storeController', function () {
-    let app:INestApplication;
+    let app: INestApplication;
     let storeController: StoreController;
     let storeService: StoreService;
 
-    let purchaseStorage = [ {id: 111}]
+    let purchaseStorage = [{id: 111}]
     let stockStorage = []
     beforeEach(async () => {
         const moduleRef = await Test.createTestingModule(
@@ -26,9 +26,11 @@ describe('storeController', function () {
                 return {
                     purchases: {
                         getAll: () => purchaseStorage,
-                        get: (option:PurchaseSearchOptions) => {purchaseStorage.filter(
-                            x => option.id == x.id
-                        )}
+                        get: (option: PurchaseSearchOptions) => {
+                            purchaseStorage.filter(
+                                x => option.id == x.id
+                            )
+                        }
                     }
                 }
             }
@@ -38,7 +40,7 @@ describe('storeController', function () {
                 return Mock;
             }
         })
-        .compile()
+            .compile()
         storeController = moduleRef.get<StoreController>(StoreController);
         storeService = moduleRef.get<StoreService>(StoreService);
         app = moduleRef.createNestApplication();
