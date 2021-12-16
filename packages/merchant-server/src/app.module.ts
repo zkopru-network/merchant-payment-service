@@ -1,10 +1,14 @@
-import {Logger, MiddlewareConsumer, Module, OnApplicationBootstrap} from "@nestjs/common";
+import {MiddlewareConsumer, Module, OnApplicationBootstrap} from "@nestjs/common";
 import {RouterModule} from "nest-router";
 import {routes} from "./routes";
 import {LoggerMiddleware} from "./middleware/logger.middleware";
+import {ApiV1Module} from "./v1/api-v1.module";
 
 @Module({
-    imports: [RouterModule.forRoutes(routes)],
+    imports: [
+        RouterModule.forRoutes(routes),
+        ApiV1Module,
+    ],
 })
 export class AppModule implements OnApplicationBootstrap {
     configure(consumer: MiddlewareConsumer) {
@@ -14,14 +18,5 @@ export class AppModule implements OnApplicationBootstrap {
     }
 
     onApplicationBootstrap(): any {
-        Logger.log(`listening port: ${printListeningPort()}`);
     }
-}
-
-
-function printListeningPort(): number {
-    if (!process.env.PORT) {
-        return 3000;
-    }
-    return Number(process.env.PORT);
 }

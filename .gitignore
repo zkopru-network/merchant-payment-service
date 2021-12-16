@@ -1,3 +1,6 @@
 node_modules
 coverage
 .idea
+lerna-debug.log
+lib
+zkopru

@@ -6,8 +6,15 @@
   "bin": {
     "payment-service": ""
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "lerna run build --sort --include-dependencies --stream",
+    "link-modules": "lerna run link-modules",
+    "lerna:bootstrap": "lerna run preBootstrap && lerna bootstrap --use-workspaces --no-ci",
+    "bootstrap": "yarn lerna:bootstrap && yarn link-modules && yarn build"
   },
   "repository": {
     "type": "git",
@@ -28,10 +35,12 @@
     "@oclif/plugin-help": "^3.2.3",
     "@types/jest": "^27.0.2",
     "jest": "^27.3.1",
+    "lerna": "^4.0.0",
     "ts-jest": "^27.0.7",
     "ts-node": "^10.3.0"
   },
   "devDependencies": {
     "@types/node": "^16.11.6"
-  }
+  },
+  "private": true
 }
