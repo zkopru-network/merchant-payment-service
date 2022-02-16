@@ -1,0 +1,17 @@
+{
+  "total": 1000,
+  "coins": [
+    {
+      "name": "BITCOIN",
+      "ticker": "BTC",
+      "amount": 1,
+      "usd": 8000
+    },
+    {
+      "name": "BITCOIN CASH",
+      "ticker": "BCH",
+      "amount": 2,
+      "usd": 100
+    }
+  ]
+}

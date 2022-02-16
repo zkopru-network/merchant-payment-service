@@ -1,0 +1,26 @@
+[
+  {
+    "key": 1,
+    "title": "KING",
+    "description": "description",
+    "id": 12,
+    "ticker": "DAI",
+    "price": 100,
+    "amount": 1,
+    "total": 1,
+    "type": "ERC721",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1920px-Image_created_with_a_mobile_phone.png"
+  },
+  {
+    "key": 2,
+    "title": "QUEEN",
+    "description": "description",
+    "id": 33,
+    "ticker": "DAI",
+    "price": 100,
+    "amount": 1,
+    "total": 10,
+    "type": "ERC1155",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1920px-Image_created_with_a_mobile_phone.png"
+  }
+]

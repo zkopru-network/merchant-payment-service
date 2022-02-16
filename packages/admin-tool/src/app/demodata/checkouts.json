@@ -1,0 +1,16 @@
+[
+  {
+    "name": "PRODUCT1",
+    "description": "hi",
+    "price": 1,
+    "ticker": "USDT",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1920px-Image_created_with_a_mobile_phone.png"
+  },
+  {
+    "name": "PRODUCT2",
+    "description": "hello",
+    "price": 2,
+    "ticker": "USDT",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1920px-Image_created_with_a_mobile_phone.png"
+  }
+]
