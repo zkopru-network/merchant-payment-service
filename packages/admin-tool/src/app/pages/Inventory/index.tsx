@@ -4,7 +4,9 @@
  *
  */
 import * as React from 'react';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 import styled from 'styled-components/macro';
 import { useTranslation } from 'react-i18next';
 import { Table } from '../../components/Table';
@@ -14,6 +16,12 @@ import { SideBar } from '../../components/SideBar';
 import inventoriesData from '../../demodata/inventories.json';
 import Modal from 'react-modal';
 import { Form, Input } from 'antd';
+import { useInventorySlice } from './slice';
+import { ReactReduxContext } from 'react-redux';
+import { STATUS_CODES } from 'http';
+import { Redirect, useHistory } from 'react-router-dom';
+import { useLoginSlice } from '../Login/slice';
+import { isConstructorDeclaration } from 'typescript';
 
 interface Props {}
 
@@ -31,32 +39,36 @@ const customStyles = {
 export function Inventory(props: Props) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { t, i18n } = useTranslation();
-  const [data, setData] = useState(inventoriesData);
-  const [firstModalIsOpen, setFirstModalIsOpen] = React.useState(false);
-  const [secondModalIsOpen, setSecondModalIsOpen] = React.useState(false);
+  const { store } = useContext(ReactReduxContext);
+  const { getState, dispatch, subscribe } = store;
+
+  const [storeState, setStoreState] = useState(getState());
+  const { actions } = useInventorySlice();
+  useEffect(() =>
+    subscribe(() => {
+      setStoreState(getState());
+    }),
+  );
+  const state = store.getState();
+  const history = useHistory();
+
+  console.log('islogin', window.localStorage.getItem('isLogin'));
+  if (!window.localStorage.getItem('isLogin')) {
+    history.push('/login');
+  }
+
   const [productName, setProductName] = React.useState('');
   const [description, setDescription] = React.useState('');
   const [ticker, setTicker] = React.useState('ETH');
   const [price, setPrice] = React.useState(0);
 
-  function openFirstModal() {
-    setFirstModalIsOpen(true);
-  }
-  function openSecondModal() {
-    setSecondModalIsOpen(true);
-  }
+  console.log('state from inventory', state.inventories);
 
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
     // subtitle.style.color = '#f00';
   }
 
-  function closeFirstModal() {
-    setFirstModalIsOpen(false);
-  }
-  function closeSecondModal() {
-    setSecondModalIsOpen(false);
-  }
   const onFinish = (values: any) => {
     console.log('Success:', values);
   };
@@ -80,7 +92,7 @@ export function Inventory(props: Props) {
           <Space size="middle">
             <a
               onClick={() => {
-                setData(data.filter(x => x.key != record.key));
+                dispatch(actions.removeInventory(record.id));
               }}
             >
               delete{' '}
@@ -96,7 +108,9 @@ export function Inventory(props: Props) {
 
       <ButtonWrapper>
         <Header style={{ alignSelf: 'start' }}>NFTs </Header>
-        <Button onClick={openFirstModal}>Register</Button>
+        <Button onClick={() => dispatch(actions.openFirstModal())}>
+          Register
+        </Button>
         <Form
           name="basic"
           labelCol={{ span: 8 }}
@@ -117,57 +131,55 @@ export function Inventory(props: Props) {
         </Form>
       </ButtonWrapper>
       <Modal
-        isOpen={firstModalIsOpen}
+        isOpen={state.inventories.firstModal}
         onAfterOpen={afterOpenModal}
-        onRequestClose={closeFirstModal}
+        onRequestClose={() => dispatch(actions.closeFirstModal())}
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <MyModal>
-          <form>
-            <MyInput
-              type="text"
-              name="name"
-              placeholder="Product Name"
-              onChange={event => setProductName(event.target.value)}
-              // ref={node => (this.inputNode = node)}
-            />
-            <MyInput
-              type="text"
-              name="description"
-              placeholder="Brief Description"
-              onChange={event => setDescription(event.target.value)}
-              // ref={node => (this.inputNode = node)}
-            />
-            <MyInput
-              type="number"
-              name="price"
-              placeholder="0.1"
-              onChange={event => setPrice(Number(event.target.value))}
-              // ref={node => (this.inputNode = node)}
-            />
-            <PriceDiv>
-              <MySelect>
-                <option>ETH</option>
-                <option>DAI</option>
-              </MySelect>
-              <NextButton
-                onClick={() => {
-                  openSecondModal();
-                  closeFirstModal();
-                }}
-              >
-                next
-              </NextButton>
-            </PriceDiv>
-          </form>
-        </MyModal>
+        <form>
+          <Input
+            type="text"
+            name="name"
+            placeholder="Product Name"
+            onChange={event => setProductName(event.target.value)}
+            // ref={node => (this.inputNode = node)}
+          />
+          <Input
+            type="text"
+            name="description"
+            placeholder="Brief Description"
+            onChange={event => setDescription(event.target.value)}
+            // ref={node => (this.inputNode = node)}
+          />
+          <Input
+            type="number"
+            name="price"
+            placeholder="0.1"
+            onChange={event => setPrice(Number(event.target.value))}
+            // ref={node => (this.inputNode = node)}
+          />
+          <PriceDiv>
+            <MySelect>
+              <option>ETH</option>
+              <option>DAI</option>
+            </MySelect>
+            <NextButton
+              onClick={() => {
+                dispatch(actions.openSecondModal());
+                dispatch(actions.closeFirstModal());
+              }}
+            >
+              next
+            </NextButton>
+          </PriceDiv>
+        </form>
       </Modal>
 
       <Modal
-        isOpen={secondModalIsOpen}
+        isOpen={state.inventories.secondModal}
         onAfterOpen={afterOpenModal}
-        onRequestClose={closeSecondModal}
+        onRequestClose={state.inventories.secondModal}
         style={customStyles}
         contentLabel="Example Modal"
       >
@@ -179,12 +191,25 @@ export function Inventory(props: Props) {
           <button
             onClick={event => {
               event.preventDefault();
-              setData(
-                data.concat({
-                  key: data.length + 1,
+              console.log({
+                key: state.inventories.data.length + 1,
+                title: productName,
+                description: description,
+                id: Math.floor(Math.random() * 60000) + 1,
+                ticker: ticker,
+                price: price,
+                amount: 1,
+                total: 1,
+                type: 'ERC721',
+                imageUrl:
+                  'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1920px-Image_created_with_a_mobile_phone.png',
+              });
+              dispatch(
+                actions.addInventory({
+                  key: state.inventories.data.length + 1,
                   title: productName,
                   description: description,
-                  id: 12,
+                  id: Math.floor(Math.random() * 60000) + 1,
                   ticker: ticker,
                   price: price,
                   amount: 1,
@@ -194,8 +219,7 @@ export function Inventory(props: Props) {
                     'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1920px-Image_created_with_a_mobile_phone.png',
                 }),
               );
-
-              closeSecondModal();
+              dispatch(actions.closeSecondModal());
             }}
           >
             registger
@@ -203,7 +227,7 @@ export function Inventory(props: Props) {
         </form>
       </Modal>
 
-      <Table columns={columns} data={data}></Table>
+      <Table columns={columns} data={state.inventories.data}></Table>
     </Div>
   );
 }

@@ -30,6 +30,12 @@ const sidebarNavItems = [
     to: '/balance',
     section: 'balance',
   },
+  {
+    display: 'Point Of Sales',
+    icon: <BalanceIcon />,
+    to: '/pointofsales',
+    section: 'pointofsales',
+  },
 ];
 
 export function Contents() {

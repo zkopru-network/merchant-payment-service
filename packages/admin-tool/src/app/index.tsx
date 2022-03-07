@@ -20,6 +20,11 @@ import { Inventory } from './pages/Inventory';
 import { Payments } from './pages/Payments';
 import { NavBar } from './components/NavBar';
 import { SideBar } from './components/SideBar';
+import { Login } from './pages/Login';
+import { ReactReduxContext } from 'react-redux';
+import { useEffect } from 'react';
+import { Signup } from './pages/Signup';
+import { PointOfSale } from './pages/PointOfSale';
 
 export function App() {
   const { i18n } = useTranslation();
@@ -42,6 +47,11 @@ export function App() {
           />
           <Route
             exact
+            path={process.env.PUBLIC_URL + '/login'}
+            component={Login}
+          />
+          <Route
+            exact
             path={process.env.PUBLIC_URL + '/balance'}
             component={Balance}
           />
@@ -54,6 +64,16 @@ export function App() {
             exact
             path={process.env.PUBLIC_URL + '/payments'}
             component={Payments}
+          />
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + '/signup'}
+            component={Signup}
+          />
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + '/pointofsales'}
+            component={PointOfSale}
           />
           <Route component={NotFoundPage} />
         </Switch>

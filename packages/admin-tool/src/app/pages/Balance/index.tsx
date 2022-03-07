@@ -11,6 +11,9 @@ import { SideBar } from '../../components/SideBar';
 import { Table } from '../../components/Table';
 import { Button } from 'antd';
 import balancesData from '../../demodata/balances.json';
+import { useContext } from 'react';
+import { ReactReduxContext } from 'react-redux';
+import { useBalanceSlice } from './slice';
 // import { BasePage } from '../BasePage';
 interface Props {}
 const data = balancesData;
@@ -46,6 +49,9 @@ const columns = [
 // );
 export function Balance(props: Props) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { store } = useContext(ReactReduxContext);
+  const action = useBalanceSlice();
+  const state = store.getState();
   const { t, i18n } = useTranslation();
   return (
     <>
@@ -56,7 +62,7 @@ export function Balance(props: Props) {
             withdraw
           </Button>
           <span>$0.00 Available Balance</span>
-          <Table columns={columns} data={data.coins}></Table>
+          <Table columns={columns} data={state.balances.data}></Table>
           <p>{'balance'}</p>
         </>
       </Div>
